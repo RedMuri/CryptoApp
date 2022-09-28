@@ -15,10 +15,10 @@ class CryptoApiFactory private constructor(
     companion object{
         private var cryptoApiFactory: CryptoApiFactory? = null
 
-        fun getInstance(): CryptoApiFactory?{
+        fun getInstance(): CryptoApiFactory{
             if (cryptoApiFactory==null)
                 cryptoApiFactory = CryptoApiFactory()
-            return cryptoApiFactory
+            return cryptoApiFactory as CryptoApiFactory
         }
     }
     fun getCryptoApiService(): CryptoApiService = retrofit.create(CryptoApiService::class.java)
