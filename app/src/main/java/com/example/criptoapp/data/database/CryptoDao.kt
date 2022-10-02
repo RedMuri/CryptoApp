@@ -11,10 +11,10 @@ import io.reactivex.Completable
 
 @Dao
 interface CryptoDao {
-    @Query("SELECT * FROM coins")
+    @Query("SELECT * FROM coins order by lastUpdate desc")
     fun getAllCoins(): LiveData<List<Coin>>
-    @Query("SELECT * FROM coins WHERE id == :coinId")
-    fun getCoinById(coinId: Int): Coin?
+    @Query("SELECT * FROM coins WHERE logoUrl == :logoUrl")
+    fun getCoinByLogoUrl(logoUrl: String): LiveData<List<Coin>>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCoins(coins: List<Coin>): Completable
     @Delete

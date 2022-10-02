@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.screens.CoinInfoActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:padding="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/coinInfoName"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/coinInfoName"
+        style="@style/coin_info_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/coin_name_tag"
+        app:layout_constraintBottom_toTopOf="@id/coinInfoMax"
+        app:layout_constraintEnd_toStartOf="@+id/coinInfoNameValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toTopOf="@id/coinInfoMax"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/coinInfoName" />
+
+    <TextView
+        android:id="@+id/coinInfoNameValue"
+        style="@style/coin_info_value"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/coinInfoName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/coinInfoName"
+        app:layout_constraintTop_toTopOf="@+id/coinInfoName" />
+
+    <TextView
+        android:id="@+id/coinInfoMax"
+        style="@style/coin_info_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/day_max_tag"
+        app:layout_constraintBottom_toTopOf="@+id/coinInfoMin"
+        app:layout_constraintEnd_toStartOf="@+id/coinInfoMaxValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coinInfoName" />
+
+    <TextView
+        android:id="@+id/coinInfoMaxValue"
+        style="@style/coin_info_value"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/coinInfoMax"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/coinInfoMax"
+        app:layout_constraintTop_toTopOf="@+id/coinInfoMax" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="24dp"
+        app:layout_constraintBottom_toTopOf="@id/coinInfoMin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/coinInfoMax" />
+
+    <TextView
+        android:id="@+id/coinInfoMin"
+        style="@style/coin_info_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/day_min_tag"
+        app:layout_constraintBottom_toTopOf="@+id/coinInfoLastUpdate"
+        app:layout_constraintEnd_toStartOf="@+id/coinInfoMinValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coinInfoMax" />
+
+    <TextView
+        android:id="@+id/coinInfoMinValue"
+        style="@style/coin_info_value"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/coinInfoMin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/coinInfoMin"
+        app:layout_constraintTop_toTopOf="@+id/coinInfoMin" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="24dp"
+        app:layout_constraintBottom_toTopOf="@id/coinInfoLastUpdate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/coinInfoMin" />
+
+    <TextView
+        android:id="@+id/coinInfoLastUpdate"
+        style="@style/coin_info_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/last_update_tag"
+        app:layout_constraintBottom_toTopOf="@+id/coinInfoLastMarket"
+        app:layout_constraintEnd_toStartOf="@+id/coinInfoLastUpdateValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coinInfoMin" />
+
+    <TextView
+        android:id="@+id/coinInfoLastUpdateValue"
+        style="@style/coin_info_value"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/coinInfoLastUpdate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/coinInfoLastUpdate"
+        app:layout_constraintTop_toTopOf="@+id/coinInfoLastUpdate" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="24dp"
+        app:layout_constraintBottom_toTopOf="@id/coinInfoLastMarket"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/coinInfoLastUpdate" />
+
+    <TextView
+        android:id="@+id/coinInfoLastMarket"
+        style="@style/coin_info_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/last_market_tag"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/coinInfoLastMarketValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coinInfoLastUpdate" />
+
+    <TextView
+        android:id="@+id/coinInfoLastMarketValue"
+        style="@style/coin_info_value"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/coinInfoLastMarket"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/coinInfoLastMarket"
+        app:layout_constraintTop_toTopOf="@+id/coinInfoLastMarket" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="24dp"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/coinInfoLastMarket" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

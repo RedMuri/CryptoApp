@@ -15,4 +15,6 @@ interface CryptoApiService {
         @Query("limit") limit: Int = 10,
         @Query("api_key") apiKey: String = Utils.API_KEY
     ): Single<ResponseTop>
+
+
 }

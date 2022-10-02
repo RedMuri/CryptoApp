@@ -6,8 +6,6 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "coins")
 data class Coin(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
     @SerializedName("FROMSYMBOL")
     val firstName: String,
     @SerializedName("TOSYMBOL")
@@ -22,6 +20,7 @@ data class Coin(
     val min: Float,
     @SerializedName("LASTMARKET")
     val lastMarket: String,
+    @PrimaryKey
     @SerializedName("IMAGEURL")
     val logoUrl: String
 )

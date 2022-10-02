@@ -9,15 +9,25 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.criptoapp.R
 import com.example.criptoapp.data.entities.Coin
+import com.example.criptoapp.data.utils.Utils
 import com.squareup.picasso.Picasso
 
 class AdapterCoinList: Adapter<AdapterCoinList.CoinViewHolder>() {
-    private var coins = arrayListOf<Coin>()
+    private var coins = listOf<Coin>()
+    private var onCoinClickListener: OnCoinClickListener? = null
+
+    interface OnCoinClickListener{
+        fun onCoinClick(position: Int)
+    }
+
     inner class CoinViewHolder(itemView: View) : ViewHolder(itemView){
         val logo: ImageView = itemView.findViewById(R.id.imageViewCoinLogo)
         val name: TextView = itemView.findViewById(R.id.textViewCoinName)
         val price: TextView = itemView.findViewById(R.id.textViewCoinPrice)
         val lastUpdate: TextView = itemView.findViewById(R.id.textViewLastUpdate)
+        init {
+            itemView.setOnClickListener{onCoinClickListener?.onCoinClick(adapterPosition)}
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinViewHolder {
@@ -27,11 +37,22 @@ class AdapterCoinList: Adapter<AdapterCoinList.CoinViewHolder>() {
 
     override fun onBindViewHolder(holder: CoinViewHolder, position: Int) {
         val coin = coins[position]
-        Picasso.get().load("coin.logoUrl").into(holder.logo)
+        Picasso.get().load(Utils.BASE_IMAGE_URL + coin.logoUrl).into(holder.logo)
         holder.name.text = coin.firstName + "/" + coin.lastName
         holder.price.text = coin.price.toString()
-        holder.lastUpdate.text = coin.lastUpdate.toString()
+        holder.lastUpdate.text = "Last update: "+Utils.convertMls(coin.lastUpdate*1000)
     }
 
     override fun getItemCount() = coins.size
+
+    fun setCoins(coins: List<Coin>){
+        this.coins = coins
+        notifyDataSetChanged()
+    }
+
+    fun setOnCoinClickListener(onCoinClickListener: OnCoinClickListener){
+        this.onCoinClickListener = onCoinClickListener
+    }
+
+    fun getCoins() = this.coins
 }
