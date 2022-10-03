@@ -46,8 +46,8 @@ class CoinListActivity : AppCompatActivity() {
     private fun attachListener(adapterCoinList: AdapterCoinList) {
         adapterCoinList.setOnCoinClickListener(object : AdapterCoinList.OnCoinClickListener {
             override fun onCoinClick(position: Int) {
-                val intent = Intent(this@CoinListActivity, CoinInfoActivity::class.java)
-                intent.putExtra("logoUrl", adapterCoinList.getCoins()[position].logoUrl)
+                val intent = CoinInfoActivity.newIntent(this@CoinListActivity,
+                    adapterCoinList.getCoins()[position].firstName)
                 startActivity(intent)
             }
         })

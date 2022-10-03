@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.criptoapp.data.entities.Coin
 
-@Database(entities = [Coin::class], version = 5)
+@Database(entities = [Coin::class], version = 8)
 abstract class CryptoDatabase : RoomDatabase() {
     companion object {
         private const val DB_NAME = "coins.db"
@@ -15,12 +15,14 @@ abstract class CryptoDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): CryptoDatabase {
             synchronized(LOCK) {
-                if (database == null)
-                    database =
-                        Room.databaseBuilder(context, CryptoDatabase::class.java, DB_NAME).fallbackToDestructiveMigration().build()
-                return database as CryptoDatabase
+                database?.let { return it }
+                val instance = Room.databaseBuilder(context, CryptoDatabase::class.java, DB_NAME)
+                    .fallbackToDestructiveMigration().build()
+                database = instance
+                return instance
             }
         }
     }
+
     abstract fun getCryptoDao(): CryptoDao
 }

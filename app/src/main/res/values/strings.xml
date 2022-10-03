@@ -6,4 +6,6 @@
     <string name="day_min_tag">Day min:</string>
     <string name="last_update_tag">Last update:</string>
     <string name="last_market_tag">Last market:</string>
+    <string name="coin_info_price_tag">Price:</string>
+    <string name="coin_name_template">%s / $s</string>
 </resources>
