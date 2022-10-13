@@ -42,7 +42,7 @@ class CoinListFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.getAllCoins().observe(viewLifecycleOwner) {
-            adapterCoinList.setCoins(it)
+            adapterCoinList.submitList(it)
         }
     }
 
