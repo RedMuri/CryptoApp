@@ -13,8 +13,8 @@ import io.reactivex.Completable
 interface CryptoDao {
     @Query("SELECT * FROM coins order by lastUpdate desc")
     fun getAllCoins(): LiveData<List<Coin>>
-    @Query("SELECT * FROM coins WHERE firstName == :firstName")
-    fun getCoinByFirstName(firstName: String): LiveData<List<Coin>>
+    @Query("SELECT * FROM coins WHERE firstName == :firstName limit 1")
+    fun getCoinByFirstName(firstName: String): Coin
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCoins(coins: List<Coin>): Completable
     @Delete

@@ -14,20 +14,13 @@ import com.squareup.picasso.Picasso
 
 class AdapterCoinList: Adapter<AdapterCoinList.CoinViewHolder>() {
     private var coins = listOf<Coin>()
-    private var onCoinClickListener: OnCoinClickListener? = null
-
-    interface OnCoinClickListener{
-        fun onCoinClick(position: Int)
-    }
+    var onCoinClickListener: ((Coin)->Unit)? = null
 
     inner class CoinViewHolder(itemView: View) : ViewHolder(itemView){
         val logo: ImageView = itemView.findViewById(R.id.imageViewCoinLogo)
         val name: TextView = itemView.findViewById(R.id.textViewCoinName)
         val price: TextView = itemView.findViewById(R.id.textViewCoinPrice)
         val lastUpdate: TextView = itemView.findViewById(R.id.textViewLastUpdate)
-        init {
-            itemView.setOnClickListener{onCoinClickListener?.onCoinClick(adapterPosition)}
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinViewHolder {
@@ -41,6 +34,9 @@ class AdapterCoinList: Adapter<AdapterCoinList.CoinViewHolder>() {
         holder.name.text = coin.firstName + "/" + coin.lastName
         holder.price.text = coin.price.toString()
         holder.lastUpdate.text = "Last update: "+Utils.convertMls(coin.lastUpdate*1000)
+        holder.itemView.setOnClickListener {
+            onCoinClickListener?.invoke(coin)
+        }
     }
 
     override fun getItemCount() = coins.size
@@ -50,9 +46,6 @@ class AdapterCoinList: Adapter<AdapterCoinList.CoinViewHolder>() {
         notifyDataSetChanged()
     }
 
-    fun setOnCoinClickListener(onCoinClickListener: OnCoinClickListener){
-        this.onCoinClickListener = onCoinClickListener
-    }
 
     fun getCoins() = this.coins
 }

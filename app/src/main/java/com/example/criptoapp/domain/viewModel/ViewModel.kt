@@ -4,6 +4,8 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.criptoapp.data.entities.Coin
 import com.example.criptoapp.data.entities.ResponseData
 import com.example.criptoapp.domain.reposytoryImpl.DatabaseRepositoryImpl
@@ -12,6 +14,8 @@ import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
 class ViewModel(application: Application) : AndroidViewModel(application) {
@@ -20,6 +24,10 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     private val compositeDisposable = CompositeDisposable()
     private val database = databaseRepository.getDatabase(application.applicationContext)
     private val coins = database.getCryptoDao().getAllCoins()
+
+    private var _coinByName = MutableLiveData<Coin>()
+    val coinByName: LiveData<Coin>
+        get() = _coinByName
 
     init {
         loadData()
@@ -62,8 +70,12 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-    fun getCoinByFirstName(firstName: String): LiveData<List<Coin>> =
-        databaseRepository.getCryptoDao(database).getCoinByFirstName(firstName)
+    fun getCoinByFirstName(firstName: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _coinByName.postValue(
+                databaseRepository.getCryptoDao(database).getCoinByFirstName(firstName))
+        }
+    }
 
     override fun onCleared() {
         super.onCleared()
@@ -95,3 +107,5 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getAllCoins() = this.coins
 }
+
+
