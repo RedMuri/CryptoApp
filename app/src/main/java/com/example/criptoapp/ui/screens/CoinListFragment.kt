@@ -1,11 +1,13 @@
 package com.example.criptoapp.ui.screens
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView.Orientation
 import com.example.criptoapp.R
 import com.example.criptoapp.databinding.FragmentCoinListBinding
 import com.example.criptoapp.domain.viewModel.ViewModel
@@ -47,12 +49,20 @@ class CoinListFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
+        val orientation = requireActivity().resources.configuration.orientation
         binding.recyclerViewCoinList.adapter = adapterCoinList
         adapterCoinList.onCoinClickListener = {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, CoinInfoFragment.newInstance(it.firstName))
-                .addToBackStack(null)
-                .commit()
+            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_container, CoinInfoFragment.newInstance(it.firstName))
+                    .addToBackStack(null)
+                    .commit()
+            } else {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_container_second, CoinInfoFragment.newInstance(it.firstName))
+                    .addToBackStack(CoinInfoFragment.NAME)
+                    .commit()
+            }
         }
     }
 
