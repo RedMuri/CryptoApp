@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.criptoapp.R
 import com.example.criptoapp.data.entities.Coin
-import com.example.criptoapp.data.utils.Utils
+import com.example.criptoapp.domain.Utils
 import com.example.criptoapp.databinding.CoinItemBinding
 import com.squareup.picasso.Picasso
 

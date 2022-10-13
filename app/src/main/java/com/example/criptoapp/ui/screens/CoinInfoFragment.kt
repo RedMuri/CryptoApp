@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.example.criptoapp.databinding.FragmentCoinInfoBinding
-import com.example.criptoapp.domain.viewModel.ViewModel
+import com.example.criptoapp.ui.viewModel.ViewModel
 
 class CoinInfoFragment : Fragment() {
 

@@ -1,8 +1,8 @@
-package com.example.criptoapp.domain.reposytoryImpl
+package com.example.criptoapp.data
 
 import android.content.Context
 import com.example.criptoapp.data.database.CryptoDatabase
-import com.example.criptoapp.domain.repository.DatabaseRepository
+import com.example.criptoapp.data.repository.DatabaseRepository
 
 class DatabaseRepositoryImpl: DatabaseRepository {
     override fun getCryptoDao(database: CryptoDatabase) = database.getCryptoDao()

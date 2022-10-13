@@ -1,4 +1,4 @@
-package com.example.criptoapp.domain.viewModel
+package com.example.criptoapp.ui.viewModel
 
 import android.app.Application
 import android.util.Log
@@ -8,8 +8,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.criptoapp.data.entities.Coin
 import com.example.criptoapp.data.entities.ResponseData
-import com.example.criptoapp.domain.reposytoryImpl.DatabaseRepositoryImpl
-import com.example.criptoapp.domain.reposytoryImpl.RetrofitRepositoryImpl
+import com.example.criptoapp.data.DatabaseRepositoryImpl
+import com.example.criptoapp.data.RetrofitRepositoryImpl
 import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -80,18 +80,6 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
-    }
-
-
-    fun deleteAllCoins(coins: List<Coin>) {
-        compositeDisposable.add(
-            databaseRepository.getCryptoDao(database).deleteAllCoins().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    insertCoin(coins)
-                }, {
-                    it.printStackTrace()
-                }))
     }
 
     private fun insertCoin(coins: List<Coin>) {

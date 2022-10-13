@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.criptoapp.domain.viewModel.ViewModel" />
+            type="com.example.criptoapp.ui.viewModel.ViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView.Orientation
 import com.example.criptoapp.R
 import com.example.criptoapp.databinding.FragmentCoinListBinding
-import com.example.criptoapp.domain.viewModel.ViewModel
+import com.example.criptoapp.ui.viewModel.ViewModel
 import com.example.criptoapp.ui.adapters.AdapterCoinList
 
 

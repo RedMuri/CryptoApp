@@ -3,7 +3,7 @@ package com.example.criptoapp.ui
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.example.criptoapp.data.utils.Utils
+import com.example.criptoapp.domain.Utils
 import com.squareup.picasso.Picasso
 import java.sql.Date
 import java.sql.Timestamp

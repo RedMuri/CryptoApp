@@ -2,10 +2,9 @@ package com.example.criptoapp.data.retrofit
 
 import com.example.criptoapp.data.entities.ResponseData
 import com.example.criptoapp.data.entities.ResponseTop
-import com.example.criptoapp.data.utils.Utils
+import com.example.criptoapp.domain.Utils
 import io.reactivex.Single
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface CryptoApiService {
