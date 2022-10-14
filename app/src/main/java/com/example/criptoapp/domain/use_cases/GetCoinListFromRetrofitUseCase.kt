@@ -4,5 +4,5 @@ import com.example.criptoapp.domain.repositories.RetrofitRepository
 
 class GetCoinListFromRetrofitUseCase(private val repository: RetrofitRepository) {
 
-    operator fun invoke() = repository.getCoinList()
+    suspend operator fun invoke() = repository.getCoinList()
 }

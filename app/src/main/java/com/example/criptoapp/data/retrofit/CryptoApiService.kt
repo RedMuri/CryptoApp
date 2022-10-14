@@ -1,9 +1,8 @@
 package com.example.criptoapp.data.retrofit
 
-import com.example.criptoapp.data.entities.ResponseData
-import com.example.criptoapp.data.entities.ResponseTop
+import com.example.criptoapp.data.db_models.ResponseData
+import com.example.criptoapp.data.db_models.ResponseTop
 import com.example.criptoapp.domain.Utils
-import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -13,14 +12,14 @@ interface CryptoApiService {
         @Query(QUERY_PARAM_LIMIT) limit: Int = 10,
         @Query(QUERY_PARAM_TO_SYMBOL) tsym: String = CURRENCY,
         @Query(QUERY_PARAM_API_KEY) apiKey: String = Utils.API_KEY
-    ): Single<ResponseTop>
+    ): ResponseTop
 
     @GET("pricemultifull?")
     fun getCoinsInfo(
         @Query(QUERY_PARAM_FROM_SYMBOLS) fromSymbols: String,
         @Query(QUERY_PARAM_TO_SYMBOLS) toSymbols: String = CURRENCY,
         @Query(QUERY_PARAM_API_KEY) apiKey: String = Utils.API_KEY
-    ): Single<ResponseData>
+    ): ResponseData
 
     companion object{
         private const val QUERY_PARAM_TO_SYMBOL = "tsym"

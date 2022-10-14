@@ -4,5 +4,5 @@ import com.example.criptoapp.domain.entities.CoinEntity
 
 interface RetrofitRepository {
 
-    fun getCoinList(): List<CoinEntity>
+    suspend fun getCoinList(): List<CoinEntity>
 }

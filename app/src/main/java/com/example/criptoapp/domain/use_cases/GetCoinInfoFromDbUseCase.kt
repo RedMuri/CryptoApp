@@ -4,5 +4,5 @@ import com.example.criptoapp.domain.repositories.DatabaseRepository
 
 class GetCoinInfoFromDbUseCase(private val repository: DatabaseRepository) {
 
-    operator fun invoke(coinName: String) = repository.getCoinInfoByName(coinName)
+    suspend operator fun invoke(coinName: String) = repository.getCoinInfoByName(coinName)
 }

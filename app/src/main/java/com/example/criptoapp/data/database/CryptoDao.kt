@@ -6,19 +6,19 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.criptoapp.data.entities.Coin
+import com.example.criptoapp.data.db_models.CoinDbModel
 import io.reactivex.Completable
 
 @Dao
 interface CryptoDao {
     @Query("SELECT * FROM coins order by lastUpdate desc")
-    fun getAllCoins(): LiveData<List<Coin>>
+    fun getAllCoins(): LiveData<List<CoinDbModel>>
     @Query("SELECT * FROM coins WHERE firstName == :firstName limit 1")
-    fun getCoinByFirstName(firstName: String): Coin
+    fun getCoinByFirstName(firstName: String): CoinDbModel
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertCoins(coins: List<Coin>): Completable
+    fun insertCoins(coinDbModels: List<CoinDbModel>): Completable
     @Delete
-    fun deleteCoin(coin: Coin)
+    fun deleteCoin(coinDbModel: CoinDbModel)
     @Query("DELETE FROM coins")
     fun deleteAllCoins(): Completable
 }

@@ -1,11 +1,11 @@
-package com.example.criptoapp.data.entities
+package com.example.criptoapp.data.db_models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "coins")
-data class Coin(
+data class CoinDbModel(
     @PrimaryKey
     @SerializedName("FROMSYMBOL")
     val firstName: String,

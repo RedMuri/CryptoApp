@@ -1,4 +1,4 @@
-package com.example.criptoapp.data.entities
+package com.example.criptoapp.data.db_models
 
 import com.google.gson.JsonObject
 import com.google.gson.annotations.SerializedName

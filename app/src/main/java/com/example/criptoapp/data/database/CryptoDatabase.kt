@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.criptoapp.data.entities.Coin
+import com.example.criptoapp.data.db_models.CoinDbModel
 
-@Database(entities = [Coin::class], version = 8)
+@Database(entities = [CoinDbModel::class], version = 8)
 abstract class CryptoDatabase : RoomDatabase() {
     companion object {
         private const val DB_NAME = "coins.db"
