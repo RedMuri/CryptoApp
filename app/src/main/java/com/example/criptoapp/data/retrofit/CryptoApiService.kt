@@ -8,20 +8,20 @@ import retrofit2.http.Query
 
 interface CryptoApiService {
     @GET("top/totalvolfull")
-    fun getResponseTop(
+    suspend fun getResponseTop(
         @Query(QUERY_PARAM_LIMIT) limit: Int = 10,
         @Query(QUERY_PARAM_TO_SYMBOL) tsym: String = CURRENCY,
-        @Query(QUERY_PARAM_API_KEY) apiKey: String = Utils.API_KEY
+        @Query(QUERY_PARAM_API_KEY) apiKey: String = Utils.API_KEY,
     ): ResponseTop
 
     @GET("pricemultifull?")
-    fun getCoinsInfo(
+    suspend fun getCoinsInfo(
         @Query(QUERY_PARAM_FROM_SYMBOLS) fromSymbols: String,
         @Query(QUERY_PARAM_TO_SYMBOLS) toSymbols: String = CURRENCY,
-        @Query(QUERY_PARAM_API_KEY) apiKey: String = Utils.API_KEY
+        @Query(QUERY_PARAM_API_KEY) apiKey: String = Utils.API_KEY,
     ): ResponseData
 
-    companion object{
+    companion object {
         private const val QUERY_PARAM_TO_SYMBOL = "tsym"
         private const val QUERY_PARAM_TO_SYMBOLS = "tsyms"
         private const val QUERY_PARAM_LIMIT = "limit"

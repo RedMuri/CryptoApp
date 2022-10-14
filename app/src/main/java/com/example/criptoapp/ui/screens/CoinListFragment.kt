@@ -43,7 +43,7 @@ class CoinListFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.getAllCoins().observe(viewLifecycleOwner) {
+        viewModel.coinListFromDb.observe(viewLifecycleOwner) {
             adapterCoinList.submitList(it)
         }
     }
