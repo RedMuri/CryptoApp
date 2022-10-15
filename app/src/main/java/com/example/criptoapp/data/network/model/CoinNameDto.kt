@@ -1,8 +1,8 @@
-package com.example.criptoapp.data.db_models
+package com.example.criptoapp.data.network.model
 
 import com.google.gson.annotations.SerializedName
 
-data class CoinWithName(
+data class CoinNameDto(
     @SerializedName("Name")
     val name: String? = null
 )

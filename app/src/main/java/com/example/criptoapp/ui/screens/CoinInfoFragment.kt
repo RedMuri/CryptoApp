@@ -43,28 +43,7 @@ class CoinInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        viewModel.getCoinByFirstName(fromSymbol)
-        onBackPressedCloseInfo()
-    }
-
-    private fun onBackPressedCloseInfo() {
-        val orientation = requireActivity().resources.configuration.orientation
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
-                object : OnBackPressedCallback(true) {
-                    override fun handleOnBackPressed() {
-                        requireActivity().supportFragmentManager.popBackStack(NAME,
-                            FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                    }
-                })
-        } else {
-            requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
-                object : OnBackPressedCallback(true) {
-                    override fun handleOnBackPressed() {
-                        requireActivity().supportFragmentManager.popBackStack()
-                    }
-                })
-        }
+        viewModel.getCoinInfo(fromSymbol)
     }
 
     override fun onDestroyView() {
@@ -76,7 +55,6 @@ class CoinInfoFragment : Fragment() {
 
         private const val FROM_SYMBOL_EXTRA = "fsym"
         private const val UNDEFINED_FROM_SYMBOL = "undefined"
-        const val NAME = "name"
 
         fun newInstance(fromSymbol: String) = CoinInfoFragment().apply {
             arguments = Bundle().apply {

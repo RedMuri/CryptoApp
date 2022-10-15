@@ -4,13 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.criptoapp.R
-import com.example.criptoapp.data.db_models.CoinDbModel
-import com.example.criptoapp.domain.Utils
 import com.example.criptoapp.databinding.CoinItemBinding
 import com.example.criptoapp.domain.entities.CoinEntity
 import com.squareup.picasso.Picasso
 
-class AdapterCoinList : ListAdapter<CoinEntity,CoinViewHolder>(CoinItemDiffCallback()) {
+class AdapterCoinList : ListAdapter<CoinEntity, CoinViewHolder>(CoinItemDiffCallback()) {
 
     var onCoinClickListener: ((CoinEntity) -> Unit)? = null
 
@@ -24,7 +22,7 @@ class AdapterCoinList : ListAdapter<CoinEntity,CoinViewHolder>(CoinItemDiffCallb
     override fun onBindViewHolder(holder: CoinViewHolder, position: Int) {
         val coin = currentList[position]
         val binding = holder.binding
-        Picasso.get().load(Utils.BASE_IMAGE_URL + coin.logoUrl).into(binding.imageViewCoinLogo)
+        Picasso.get().load(coin.logoUrl).into(binding.imageViewCoinLogo)
         binding.textViewCoinName.text =
             String.format(binding.root.context.getString(R.string.coin_name_template),
                 coin.firstName,
@@ -32,7 +30,7 @@ class AdapterCoinList : ListAdapter<CoinEntity,CoinViewHolder>(CoinItemDiffCallb
         binding.textViewCoinPrice.text = coin.price.toString()
         binding.textViewLastUpdate.text =
             String.format(binding.root.context.getString(R.string.last_update_template),
-                Utils.convertMls(coin.lastUpdate * 1000))
+                coin.lastUpdate)
         binding.root.setOnClickListener {
             onCoinClickListener?.invoke(coin)
         }

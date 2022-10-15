@@ -1,9 +1,9 @@
-package com.example.criptoapp.data.db_models
+package com.example.criptoapp.data.network.model
 
 import com.google.gson.JsonObject
 import com.google.gson.annotations.SerializedName
 
-data class ResponseData(
+data class CoinJsonContainerDto(
     @SerializedName("RAW")
-    val raw: JsonObject? = null
+    val json: JsonObject? = null
 )

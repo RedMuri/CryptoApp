@@ -51,6 +51,7 @@ class CoinListFragment : Fragment() {
     private fun setupRecyclerView() {
         val orientation = requireActivity().resources.configuration.orientation
         binding.recyclerViewCoinList.adapter = adapterCoinList
+        binding.recyclerViewCoinList.itemAnimator = null
         adapterCoinList.onCoinClickListener = {
             if (orientation == Configuration.ORIENTATION_PORTRAIT) {
                 requireActivity().supportFragmentManager.beginTransaction()
@@ -58,9 +59,10 @@ class CoinListFragment : Fragment() {
                     .addToBackStack(null)
                     .commit()
             } else {
+                requireActivity().supportFragmentManager.popBackStack()
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.main_container_second, CoinInfoFragment.newInstance(it.firstName))
-                    .addToBackStack(CoinInfoFragment.NAME)
+                    .addToBackStack(null)
                     .commit()
             }
         }

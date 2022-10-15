@@ -1,26 +1,24 @@
-package com.example.criptoapp.data.retrofit
+package com.example.criptoapp.data.network
 
-import com.example.criptoapp.data.db_models.ResponseData
-import com.example.criptoapp.data.db_models.ResponseTop
-import com.example.criptoapp.domain.Utils
-import retrofit2.Call
+import com.example.criptoapp.data.network.model.CoinJsonContainerDto
+import com.example.criptoapp.data.network.model.CoinNameContainerListDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface CryptoApiService {
     @GET("top/totalvolfull")
-    fun getResponseTop(
+    suspend fun getResponseTop(
         @Query(QUERY_PARAM_LIMIT) limit: Int = 10,
         @Query(QUERY_PARAM_TO_SYMBOL) tsym: String = CURRENCY,
-        @Query(QUERY_PARAM_API_KEY) apiKey: String = Utils.API_KEY,
-    ): Call<ResponseTop>
+        @Query(QUERY_PARAM_API_KEY) apiKey: String = API_KEY,
+    ): CoinNameContainerListDto
 
     @GET("pricemultifull?")
-    fun getCoinsInfo(
+    suspend fun getCoinsInfo(
         @Query(QUERY_PARAM_FROM_SYMBOLS) fromSymbols: String,
         @Query(QUERY_PARAM_TO_SYMBOLS) toSymbols: String = CURRENCY,
-        @Query(QUERY_PARAM_API_KEY) apiKey: String = Utils.API_KEY,
-    ): Call<ResponseData>
+        @Query(QUERY_PARAM_API_KEY) apiKey: String = API_KEY,
+    ): CoinJsonContainerDto
 
     companion object {
         private const val QUERY_PARAM_TO_SYMBOL = "tsym"
@@ -30,6 +28,7 @@ interface CryptoApiService {
         private const val QUERY_PARAM_API_KEY = "api_key"
 
         private const val CURRENCY = "USD"
+        private const val API_KEY = "0e5d65020b565c35d1c07ce1bff9ef3ebaf2d7cf5e3de951078fdc487c9f95bf"
     }
 
 }
