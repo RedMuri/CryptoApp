@@ -14,11 +14,11 @@ interface CryptoDao {
     @Query("SELECT * FROM coins order by lastUpdate desc")
     fun getAllCoins(): LiveData<List<CoinDbModel>>
     @Query("SELECT * FROM coins WHERE firstName == :firstName limit 1")
-    fun getCoinByFirstName(firstName: String): CoinDbModel
+    suspend fun getCoinByFirstName(firstName: String): CoinDbModel
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertCoins(coinDbModels: List<CoinDbModel>): Completable
+    suspend fun insertCoins(coinDbModels: List<CoinDbModel>)
     @Delete
-    fun deleteCoin(coinDbModel: CoinDbModel)
+    suspend fun deleteCoin(coinDbModel: CoinDbModel)
     @Query("DELETE FROM coins")
-    fun deleteAllCoins(): Completable
+    suspend fun deleteAllCoins()
 }
