@@ -1,24 +1,20 @@
 package com.example.criptoapp.data.workers
 
 import android.content.Context
-import androidx.work.CoroutineWorker
-import androidx.work.OneTimeWorkRequest
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkerParameters
-import com.example.criptoapp.data.database.CryptoDatabase
+import androidx.work.*
+import com.example.criptoapp.data.database.CryptoDao
 import com.example.criptoapp.data.mapper.CoinMapper
-import com.example.criptoapp.data.network.CryptoApiFactory
+import com.example.criptoapp.data.network.CryptoApiService
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 
 class RefreshDataWorker(
     context: Context,
-    workerParameters: WorkerParameters
-): CoroutineWorker(context,workerParameters) {
-
-    private val cryptoDao = CryptoDatabase.getInstance(context).getCryptoDao()
-    private val apiService = CryptoApiFactory.cryptoApiService
-
-    private val mapper = CoinMapper()
+    workerParameters: WorkerParameters,
+    private val cryptoDao: CryptoDao,
+    private val apiService: CryptoApiService,
+    private val mapper: CoinMapper,
+) : CoroutineWorker(context, workerParameters) {
 
     override suspend fun doWork(): Result {
         while (true) {
@@ -35,12 +31,32 @@ class RefreshDataWorker(
         }
     }
 
-    companion object{
+    companion object {
 
         const val NAME = "RefreshDataWorker"
 
-        fun makeRequest(): OneTimeWorkRequest{
+        fun makeRequest(): OneTimeWorkRequest {
             return OneTimeWorkRequestBuilder<RefreshDataWorker>().build()
+        }
+    }
+
+    class Factory @Inject constructor(
+        private val cryptoDao: CryptoDao,
+        private val apiService: CryptoApiService,
+        private val mapper: CoinMapper,
+    ) : ChildWorkerFactory {
+
+        override fun create(
+            context: Context,
+            workerParameters: WorkerParameters,
+        ): ListenableWorker {
+            return RefreshDataWorker(
+                context,
+                workerParameters,
+                cryptoDao,
+                apiService,
+                mapper
+            )
         }
     }
 }
