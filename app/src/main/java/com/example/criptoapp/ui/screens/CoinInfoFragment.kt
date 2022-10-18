@@ -1,23 +1,20 @@
 package com.example.criptoapp.ui.screens
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.example.criptoapp.databinding.FragmentCoinInfoBinding
-import com.example.criptoapp.ui.viewModel.ViewModel
+import com.example.criptoapp.ui.viewModel.CoinViewModel
 
 class CoinInfoFragment : Fragment() {
 
     private var fromSymbol: String = UNDEFINED_FROM_SYMBOL
 
-    private val viewModel by lazy {
-        ViewModelProvider(this)[ViewModel::class.java]
+    private val coinViewModel by lazy {
+        ViewModelProvider(this)[CoinViewModel::class.java]
     }
 
     private var _binding: FragmentCoinInfoBinding? = null
@@ -41,9 +38,9 @@ class CoinInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.viewModel = viewModel
+        binding.viewModel = coinViewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        viewModel.getCoinInfo(fromSymbol)
+        coinViewModel.getCoinInfo(fromSymbol)
     }
 
     override fun onDestroyView() {

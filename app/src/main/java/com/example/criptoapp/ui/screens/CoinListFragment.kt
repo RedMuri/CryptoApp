@@ -7,10 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView.Orientation
 import com.example.criptoapp.R
 import com.example.criptoapp.databinding.FragmentCoinListBinding
-import com.example.criptoapp.ui.viewModel.ViewModel
+import com.example.criptoapp.ui.viewModel.CoinViewModel
 import com.example.criptoapp.ui.adapters.AdapterCoinList
 
 
@@ -19,8 +18,8 @@ class CoinListFragment : Fragment() {
     private val adapterCoinList by lazy {
         AdapterCoinList()
     }
-    private val viewModel by lazy {
-        ViewModelProvider(this)[ViewModel::class.java]
+    private val coinViewModel by lazy {
+        ViewModelProvider(this)[CoinViewModel::class.java]
     }
 
     private var _binding: FragmentCoinListBinding? = null
@@ -43,7 +42,7 @@ class CoinListFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.coinListFromDb.observe(viewLifecycleOwner) {
+        coinViewModel.coinListFromDb.observe(viewLifecycleOwner) {
             adapterCoinList.submitList(it)
         }
     }
