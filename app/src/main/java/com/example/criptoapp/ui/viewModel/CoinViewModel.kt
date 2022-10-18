@@ -22,7 +22,6 @@ class CoinViewModel @Inject constructor(
 
     val coinListFromDb = getCoinListUseCase()
 
-
     init {
         loadDataUseCase.invoke()
     }
